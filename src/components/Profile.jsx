@@ -1,4 +1,5 @@
-import { useEffect, useState,useNavigate } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { storage,refStorage,uploadBytes2,getDownloadURL2,deleteUser2,auth } from "../firebase";
 
 
@@ -7,7 +8,7 @@ const Profile = ({user,mail,propic,setPropic,uId}) => {
     const [edit,setEdit] = useState(false)
     const navigate = useNavigate()
 
-    const userCurrent = auth.currentUser;
+   
 
 
     const storageRef = refStorage(storage, 'profile/' + uId)
@@ -36,9 +37,10 @@ const Profile = ({user,mail,propic,setPropic,uId}) => {
     }
 
     const handleDelete =()=>{
+        const userCurrent = auth.currentUser;
         deleteUser2(userCurrent).then(() => {
             alert('Account deleted');
-            navigate('/Register')
+            navigate('/')
           }).catch((error) => {
             alert(error,'oops.....cant delete account')
           });
