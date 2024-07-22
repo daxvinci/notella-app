@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* body{
+    background-color: #FAE5BA;
+} */
+.brand:hover{
+    color:#438B6A !important;
+}
+.brand:visited{
+    color:#438B6A !important;
+}
+.text{
+    color:#438B6A;
+}
+.btn{
+    border: 0px solid black;
+    color:#438B6A;
+}
+.btn:active{
+    transform: translateY(4px);
+}
+.btn-color{
+    /* background-color: #FFA630; */
+    background: rgba(255, 166, 48, 0.6);
+    /* opacity: 0.7; */
+    /* color: #438B6A; */
+}
+.btn-color:hover{
+    background: rgba(255, 166, 48, 1);
+    /* background-color: #FFA630; */
+    opacity: 1;
+}
+.btn-color:active{
+    background: rgba(255, 166, 48, 1);
+    transform: translateY(4px);
+    border: 0px solid black;
+}
+u{
+    color:#438B6A;
+}
+.link, .link:hover, .link:active, .link:visited{
+    text-decoration: none !important;
+    color: #438B6A !important;
+    /* color: black !important; */
+}
+.empty{
+    background-image: url('../public/assets/error404.jpg');
+    background-size: cover;
+}
+.card-wrapper {
+    max-width: 16rem; /* Adjust the max width as needed */
+    height: 16rem; /* Adjust the height as needed */
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.card-title {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+.delete{
+    text-decoration: line-through;
+    animation: fadeOut 5s forwards;
+}
+
+@keyframes fadeOut{
+    from {
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+  
