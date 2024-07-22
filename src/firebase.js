@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, onAuthStateChanged, getAuth,signInWithEmailAndPassword,signOut,updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, getAuth,signInWithEmailAndPassword,signOut,updateProfile, deleteUser } from "firebase/auth";
 import { getDatabase,ref,child,get,set,update,remove,push } from "firebase/database";
 import { getStorage,uploadBytes,ref as Ref,listAll,getDownloadURL } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -34,6 +34,7 @@ export const auth = getAuth()
 export const createUserEmailAndPassword = createUserWithEmailAndPassword
 export const signInUserEmailAndPassword = signInWithEmailAndPassword
 export const signOut2 = signOut
+export const deleteUser2 = deleteUser
 
 //profile
 export const updateProfile2 = updateProfile

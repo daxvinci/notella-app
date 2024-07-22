@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
-import { storage,refStorage,uploadBytes2,getDownloadURL2 } from "../firebase";
+import { useEffect, useState,useNavigate } from "react";
+import { storage,refStorage,uploadBytes2,getDownloadURL2,deleteUser2,auth } from "../firebase";
 
 
 
 const Profile = ({user,mail,propic,setPropic,uId}) => {
     const [edit,setEdit] = useState(false)
+    const navigate = useNavigate()
+
+    const userCurrent = auth.currentUser;
 
 
     const storageRef = refStorage(storage, 'profile/' + uId)
@@ -17,10 +20,10 @@ const Profile = ({user,mail,propic,setPropic,uId}) => {
             return;
           }
         try{
-            // setPropic(URL.createObjectURL(newFile))
+            setPropic(URL.createObjectURL(newFile))
             await uploadBytes2(storageRef, newFile)
-            const url = await getDownloadURL2(storageRef);
-            setPropic(url);
+            const url = await getDownloadURL2(storageRef)
+            setPropic(url)
         }
         catch(error){
             alert('error: ',error)
@@ -33,7 +36,12 @@ const Profile = ({user,mail,propic,setPropic,uId}) => {
     }
 
     const handleDelete =()=>{
-        console.log('delete')
+        deleteUser2(userCurrent).then(() => {
+            alert('Account deleted');
+            navigate('/Register')
+          }).catch((error) => {
+            alert(error,'oops.....cant delete account')
+          });
     }
 
     useEffect(() => {

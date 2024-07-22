@@ -12,7 +12,7 @@ const Dashboard = () => {
     const [username,setUsername] = useState('')
     const [dashboard, setdashboard] = useState('home')
     const [uId, setUId] = useState('')
-    const [propic,setPropic] = useState(['https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1721181173~exp=1721184773~hmac=5e18048e55f60a4f22143865aa605e99a28e73598361e50b0348acd46bf5fa1a&w=740',])
+    const [propic,setPropic] = useState([{default:'https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1721181173~exp=1721184773~hmac=5e18048e55f60a4f22143865aa605e99a28e73598361e50b0348acd46bf5fa1a&w=740',}])
 
 
         
