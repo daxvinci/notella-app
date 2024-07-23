@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar";
 const About = () => {
     return ( 
         <>
-        <div className="bg-[#FAE5BA]">
+        <div className="bg-[#FAE5BA] min-h-screen">
         < Navbar />
       {/* <div className="bg-[#FAE5BA] absolute top-0 bottom-0 right-0 left-0 -z-10"></div> */}
         <div className="row align-items-md-stretch justify-content-center gap-2 mx-3">
