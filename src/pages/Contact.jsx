@@ -3,8 +3,9 @@ import Navbar from "../components/Navbar";
 const Contact = () => {
     return ( 
         <>
+        <div className="bg-[#FAE5BA] min-h-screen">
         < Navbar />
-        <div className="contact-bg absolute top-0 bottom-0 right-0 left-0 -z-10 bg-[#FAE5BA]"></div>
+        {/* <div className="contact-bg absolute top-0 bottom-0 right-0 left-0 -z-10 bg-[#FAE5BA]"></div> */}
         <div className="modal contact-modal modal-sheet position-static d-block p-4 py-md-2" tabIndex="-1" role="dialog" id="modalTour">
         <div className="modal-dialog" role="document">
           <div className="modal-content contact-modal-content rounded-4 shadow">
@@ -55,6 +56,7 @@ const Contact = () => {
               
           </div>
         </div>
+      </div>
       </div>
       </div>
       </>

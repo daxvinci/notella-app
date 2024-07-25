@@ -11,24 +11,52 @@ const Checklist = ({uId}) => {
     const inputRef = useRef(null)
     const inputDivRef = useRef(null)
     const [count,setCount] = useState(0)
+    const [lastColor, setLastColor] = useState(null);
     // const [checkedTimeouts,setCheckedTimeouts] = useState({})
+
+    const colors = [
+      { bg: "bg-red-300", border: "border-red-400" },
+      { bg: "bg-blue-300", border: "border-blue-400" },
+      { bg: "bg-green-300", border: "border-green-400" },
+      { bg: "bg-yellow-300", border: "border-yellow-400" },
+      { bg: "bg-purple-300", border: "border-purple-400" },
+      { bg: "bg-pink-300", border: "border-pink-400" },
+      { bg: "bg-indigo-300", border: "border-indigo-400" },
+      { bg: "bg-gray-300", border: "border-gray-400" },
+    ];
+
+    const getRandomColor = () => {
+      let newColor = lastColor;
+      while (newColor === lastColor) {
+        if(newColor === lastColor){
+          newColor = colors[Math.floor(Math.random() * colors.length)];
+        }else{
+          break
+        }
+      }
+      setLastColor(newColor);
+      return newColor;
+    };
 
     const createNewList=()=>{
       setShowInput(true)
       console.log('clicked')
     }
 
-    const handleList =()=> {
+    const handleList = ()=> {
       if(inputRef.current.value === ''){
         alert('what are you doing? don\'t break the system...write something before adding')
         return
       }
-      const newCount = count + 1; 
-      const newList = {id:newCount,task:inputRef.current.value,checked:false,timeout:null};
-      setListItem([...listItem,newList])
-      inputRef.current.value = ''
-      writeUserCheck(uId,newCount,newList.task,false,null)
-      setCount(newCount)
+      const newColor = getRandomColor();
+      const newCount = count + 1;
+      if(newColor){
+        const newList = {id:newCount,task:inputRef.current.value,checked:false,timeout:null,color:newColor}
+        setListItem([...listItem,newList])
+        inputRef.current.value = ''
+        writeUserCheck(uId,newCount,newList.task,false,null,newList.color)
+        setCount(newCount)
+      }
     }
 
     const handleCheck = (index, isChecked) => {
@@ -39,7 +67,7 @@ const Checklist = ({uId}) => {
         updateList[index].timeout = setTimeout(()=>{
           setListItem((prev)=>(prev.filter((_,i)=> i !== index )))
           removeCheck(updateList[index].id,uId)
-        },5000
+        },2000
         )
       }else{
         clearTimeout(updateList[index].timeout)
@@ -62,6 +90,7 @@ const Checklist = ({uId}) => {
                   task: checkdata[uId][key].task,
                   checked: checkdata[uId][key].checked,
                   timeout:checkdata[uId][key].timeout,
+                  color:checkdata[uId][key].color,
               }));
               setListItem(checkArray);
               setCount(checkArray.length > 0 ? checkArray[checkArray.length - 1].id : 0); 
@@ -97,11 +126,11 @@ const Checklist = ({uId}) => {
 
     return ( 
         <>
-        <div className="ml-[220px]">
+        <div className="ml-[100px] md:ml-[220px] h-full pt-3">
             
           <div className="my-3 px-0 d-flex justify-content-center div-search">
             <form className="w-100" role="search">
-              <input onChange={(e)=>setSearch(e.target.value)} autoComplete="off" id="search" type="search" className="form-control w-96 rounded-2xl text-lg shadow-lg" placeholder="Search..." aria-label="Search"></input>
+              <input onChange={(e)=>setSearch(e.target.value)} autoComplete="off" id="search" type="search" className="form-control  w-60 md:w-96 rounded-2xl text-lg shadow-lg" placeholder="Search..." aria-label="Search"></input>
             </form>
           </div>
 
@@ -125,10 +154,10 @@ const Checklist = ({uId}) => {
                             </div>
                         </div>}
 
-            {listItem.length === 0 && !showInput && !isLoading && <div className="mpty flex items-center gap-10 flex-col md:mt-16 h-[300px]">
-              <h2 className="todo text-4xl">The page is void....click the button to add a task</h2>
-              <h3 className="wild text-2xl font-playful">Go wild!!😎😎</h3>
-              <i className="font-playful font-semibold">Also a hint....to delete a task check it.....you have five seconds to uncheck it before it deletes</i>
+            {listItem.length === 0 && !showInput && !isLoading && <div className="mpty flex items-center gap-3 md:mr-0 mr-3 md:gap-10 flex-col md:mt-16 h-[300px]">
+              <h2 className="todo text-center text-3xl md:text-4xl">The page is void....click the button to add a task</h2>
+              <h3 className="wild text-2xl text-center font-playful">Go wild!!😎😎</h3>
+              <i className="font-playful text-center font-semibold">Also a hint....to delete a task check it.....you have two seconds to uncheck it before it deletes</i>
               <button onClick={createNewList} className="addbtn rounded-full bg-sky-500 hover:bg-sky-600 active:translate-y-2 mt-8" id="addNote">
                   <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -136,13 +165,13 @@ const Checklist = ({uId}) => {
               </button>
             </div>}
 
-            {(listItem.length !== 0 || showInput) && <div ref={inputDivRef} className="addList w-[600px] flex gap-4 justify-between">
+            {(listItem.length !== 0 || showInput) && <div ref={inputDivRef} className="addList md:w-[500px] lg:w-[600px] flex gap-4 justify-between">
               <input autoComplete="off" ref={inputRef} type="taskAdd" placeholder="write a task 📝" name="todo" id="taskAdd" className="text-blue-500 w-full rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 shadow-xl text-xl" />
               <button onClick={handleList} className="bg-sky-500 hover:bg-sky-600 px-3 py-1 rounded-2xl active:translate-y-2 relative w-[100px] cursor-pointer shadow-xl">Add 👇</button>
             </div>}
-            <ol className="mt-4">
+            <ol className="mt-4 w-[500px]">
               {listItem.filter((item)=>item.task.toLowerCase() === ''  ? item : item.task.toLowerCase().includes(search.toLowerCase())).map((item,index)=>(
-                <li className={`text-lg font-semibold font-rest ${item.checked ? 'delete' : ''}`} key={index}><input onChange={(e)=>handleCheck(index,e.target.checked)} checked={item.checked} className="mr-4" type="checkbox" name="check" id="check" />{item.task}</li>
+                <li className={`text-sm w-full md:text-base ${item.color.bg} border-l-2 ${item.color.border} pl-2 lg:text-lg check-word flex font-semibold font-rest ${item.checked ? 'delete' : ''}`} key={index}><input onChange={(e)=>handleCheck(index,e.target.checked)} checked={item.checked} className="mr-4" type="checkbox" name="check" id="check" /> <span className=" max-w-full">{item.task}</span></li>
               ))}
             </ol>
           </main>
@@ -154,12 +183,13 @@ const Checklist = ({uId}) => {
 export default Checklist;
 
 
-function writeUserCheck(uId,userId, task,checked,timeout) {
+function writeUserCheck(uId,userId, task,checked,timeout,color) {
   set2(ref2(db, 'usersCheck/' + uId + '/' + userId), {
     id:userId,
     task:task,
     checked:checked,
     timeout:timeout,
+    color:color,
   })
   .then(()=>toast("task added"))
   .catch(err=>{

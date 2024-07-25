@@ -4,11 +4,10 @@ const Navbar = () => {
     return ( 
         <header className="p-3">
         <div className="">
-          <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-    
-            <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li><Link to="/" className="nav-link link text mx-5 brand">Notella</Link></li>
-              <li><Link to="/About" className="nav-link link text px-2">About</Link></li>
+          <div className="flex justify-between ">
+            <ul className="nav mb-2">
+              <li><Link to="/" className="nav-link link text brand">Notella</Link></li>
+              <li><Link to="/About" className="nav-link link mx-5 text px-2">About</Link></li>
               <li><Link to="/Contact" className="nav-link link text px-2">Contact us</Link></li>
             </ul>
     

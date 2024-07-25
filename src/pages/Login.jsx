@@ -33,7 +33,7 @@ const Login = () => {
   }
     return ( 
         <>
-      <div className="bg-[#8a8781] absolute top-0 bottom-0 right-0 left-0 -z-10"></div>
+      <div className="bg-[#8a8781] min-h-screen">
           <div className="modal modal-sheet position-static d-block p-4 py-md-5" tabIndex="-1" role="dialog" id="modalSignin">
         <div className="modal-dialog" role="document">
         <div className="modal-content rounded-4 shadow">
@@ -72,6 +72,7 @@ const Login = () => {
           </form>
         </div>
       </div>
+    </div>
     </div>
     </div>
         </>

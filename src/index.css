@@ -63,7 +63,7 @@ u{
 }
 .delete{
     text-decoration: line-through;
-    animation: fadeOut 5s forwards;
+    animation: fadeOut 2s forwards;
 }
 
 @keyframes fadeOut{
@@ -73,5 +73,10 @@ u{
     to{
         opacity: 0;
     }
+}
+.check-word{
+    word-break: break-all;
+    /* text-wrap: wrap; */
+    overflow-wrap: break-word;
 }
   

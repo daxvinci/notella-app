@@ -130,7 +130,7 @@ const Main = ({user,uId}) => {
     return ( 
         <>
                   {/* <!-- main dashoard  --> */}
-                  <main className="ml-[220px] relative h-full" id="main">
+                  <main className="ml-[100px] md:ml-[220px] pt-3 relative h-full" id="main">
                   <ToastContainer 
                     position="top-right"
                     autoClose={5000}
@@ -152,9 +152,9 @@ const Main = ({user,uId}) => {
 
 
               <h1 className="h2"> Hello 👋 {user}</h1>
-              { !isLoading && <div className="my-3 px-0 d-flex justify-content-center div-search">
+              { !isLoading && <div className="my-3 ml-2 md:ml-0 px-0 d-flex justify-content-center div-search">
                 <form className="w-100" role="search">
-                  <input onChange={(e)=>setSearch(e.target.value)} autoComplete="off" id="search" type="search" className="form-control w-96 rounded-2xl text-lg shadow-lg" placeholder="Search..." aria-label="Search"></input>
+                  <input onChange={(e)=>setSearch(e.target.value)} autoComplete="off" id="search" type="search" className="form-control w-60 md:w-96 rounded-2xl text-lg shadow-lg" placeholder="Search..." aria-label="Search"></input>
                 </form>
               </div>}
 
@@ -173,14 +173,14 @@ const Main = ({user,uId}) => {
                 </div>
               </div>}
 
-              {notes.length !== 0 && !isLoading && <button onClick={createNewNote} className="rounded-3xl bg-blue-500 hover:bg-blue-600 w-24 font-semibold text-white px-2 py-2 mr-2 active:translate-y-2 shadow-lg shadow-blue-700 mb-4">Add New</button>}
+              {notes.length !== 0 && !isLoading && <button onClick={createNewNote} className="rounded-3xl bg-blue-500 hover:bg-blue-600 w-24 font-semibold text-white px-2 py-2 md:ml-0 ml-20 mr-2 active:translate-y-2 shadow-lg shadow-blue-700 mb-4">Add New</button>}
 
                 {/* Write */}
-                {write && <div className="notesContainer h-screen flex flex-col justify-between absolute top-0 left-0 right-0 bottom-0 z-30 rounded-2xl py-10 px-40 " id="notesContainer">
+                {write && <div className="notesContainer h-screen flex flex-col justify-between absolute top-0 left-0 right-0 bottom-0 z-30 rounded-2xl py-10 px-10 lg:px-40 " id="notesContainer">
                     <div className="absolute top-0 left-0 right-0 bottom-10 -z-20 rounded-2xl bg-amber-100 shadow-lg"></div>
                     <form className="flex flex-col gap-5" action="">
-                        <input type="text" id="title" placeholder="Title" className="text-blue-500 rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 mx-40 shadow-xl h-12 text-xl" />
-                        <textarea name="notes" placeholder="Note" id="notes" className="rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 shadow-xl text-lg bg-slate-300"></textarea>
+                        <input type="text" id="title" placeholder="Title" className="text-blue-500 rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 lg:mx-40 shadow-xl h-12 text-xl" />
+                        <textarea name="notes" placeholder="Note" id="notes" className="rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 shadow-xl text-lg h-72 resize-none bg-slate-300"></textarea>
                     </form>
                     <div className="buttons self-end">
                     <button onClick={cancel} className="rounded-3xl bg-yellow-500 hover:bg-yellow-600 w-28 py-2 mr-6 mb-6 active:translate-y-2 shadow-lg shadow-yellow-500">Cancel</button>
@@ -194,7 +194,7 @@ const Main = ({user,uId}) => {
                     <div className="absolute top-0 left-0 right-0 bottom-0 -z-20 rounded-2xl bg-amber-100  shadow-lg"></div>
                     <form className="flex flex-col gap-5" action="">
                         <input type="text" defaultValue={renote.title} id="newtitle" placeholder="Title" className="rounded-xl hover:ring-1 font-playful ring-blue-500 outline-0 px-3 mx-40 shadow-xl h-12 text-xl" />
-                        <textarea name="notes" defaultValue={renote.note} placeholder="Note" id="newnotes" className="rounded-xl hover:ring-1 font-rest ring-blue-500 outline-0 px-3 shadow-xl h-96 text-lg resize-none bg-slate-300"></textarea>
+                        <textarea name="notes" defaultValue={renote.note} placeholder="Note" id="newnotes" className="rounded-xl hover:ring-1 font-rest ring-blue-500 outline-0 px-3 shadow-xl h-72 lg:h-96 text-lg resize-none bg-slate-300"></textarea>
                     </form>
                     <div className="buttons self-end">
                     <button onClick={cancel} className="rounded-3xl bg-yellow-500 hover:bg-yellow-600 w-28 py-2 mr-6 mb-6 active:translate-y-2 shadow-lg shadow-yellow-500">Cancel</button>
@@ -203,7 +203,7 @@ const Main = ({user,uId}) => {
                 </div>}
 
                 {/* written */}
-                    <div className="grid grid-cols-4 md:gap-x-3 gap-y-6">
+                    <div className="grid grid-cols-1 ml-2 md:ml-0 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-x-3 lg:gap-y-6">
                 {notes.length !== 0 && !isLoading && 
                 notes.filter((noteSearch)=> noteSearch.title.toLowerCase() === '' ? noteSearch : noteSearch.title.toLowerCase().includes(search.toLowerCase())).map((noted) =>(
                     <div key={noted.id} className="card-wrapper overflow-hidden flex flex-col bg-amber-100 justify-between shadow-lg shadow-amber-100 px-3 py-3 rounded-2xl max-w-64 h-64 text-wrap">
