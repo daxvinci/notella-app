@@ -134,7 +134,7 @@ const Checklist = ({uId}) => {
             </form>
           </div>
 
-          <main className="checklist">
+          <main className="checklist md:pr-0 pr-6">
           <ToastContainer 
                     position="top-right"
                     autoClose={5000}
@@ -171,7 +171,7 @@ const Checklist = ({uId}) => {
             </div>}
             <ol className="mt-4">
               {listItem.filter((item)=>item.task.toLowerCase() === ''  ? item : item.task.toLowerCase().includes(search.toLowerCase())).map((item,index)=>(
-                <li className={`text-sm w-full md:text-base ${item.color.bg} border-l-2 ${item.color.border} pl-2 lg:text-lg check-word flex font-semibold font-rest ${item.checked ? 'delete' : ''}`} key={index}><input onChange={(e)=>handleCheck(index,e.target.checked)} checked={item.checked} className="mr-4" type="checkbox" name="check" id="check" /> <span className=" max-w-full">{item.task}</span></li>
+                <li className={`text-sm w-full md:text-base ${item.color.bg} border-l-4 ${item.color.border} pl-2 lg:text-lg check-word flex font-semibold font-rest ${item.checked ? 'delete' : ''}`} key={index}><input onChange={(e)=>handleCheck(index,e.target.checked)} checked={item.checked} className="mr-4" type="checkbox" name="check" id="check" /> <span className=" max-w-full">{item.task}</span></li>
               ))}
             </ol>
           </main>

@@ -33,7 +33,7 @@ const Side = ({user,setdashboard,propic}) => {
                     pauseOnHover
                     theme="dark" />
             <div className="side-nav z-10 d-flex flex-column flex-shrink-0 px-2 md:px-3 py-3 fixed top-3 bottom-0 md:w-[200px] left-3 md:left-0 rounded-t-3xl md:rounded-t-none md:rounded-tr-3xl bg-gray-700" id="sidenav">
-              <ul className="nav nav-pills pr-6 flex items-center md:items-start flex-col mb-auto">
+              <ul className="nav nav-pills md:pr-6 flex items-center md:items-start flex-col mb-auto">
                 <li className="my-4 border-b">
                   <button onClick={nav} className="nav nav-link px-3 md:px-12 flex items-center text-white text-decoration-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi md:mr-3 bi-house" viewBox="0 0 16 16">
