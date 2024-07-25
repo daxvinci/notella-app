@@ -15,14 +15,14 @@ const Checklist = ({uId}) => {
     // const [checkedTimeouts,setCheckedTimeouts] = useState({})
 
     const colors = [
-      { bg: "bg-red-300", border: "border-red-400" },
-      { bg: "bg-blue-300", border: "border-blue-400" },
-      { bg: "bg-green-300", border: "border-green-400" },
-      { bg: "bg-yellow-300", border: "border-yellow-400" },
-      { bg: "bg-purple-300", border: "border-purple-400" },
-      { bg: "bg-pink-300", border: "border-pink-400" },
-      { bg: "bg-indigo-300", border: "border-indigo-400" },
-      { bg: "bg-gray-300", border: "border-gray-400" },
+      { bg: "bg-red-300", border: "border-red-500" },
+      { bg: "bg-blue-300", border: "border-blue-500" },
+      { bg: "bg-green-300", border: "border-green-500" },
+      { bg: "bg-yellow-300", border: "border-yellow-500" },
+      { bg: "bg-purple-300", border: "border-purple-500" },
+      { bg: "bg-pink-300", border: "border-pink-500" },
+      { bg: "bg-indigo-300", border: "border-indigo-500" },
+      { bg: "bg-gray-300", border: "border-gray-500" },
     ];
 
     const getRandomColor = () => {
@@ -31,10 +31,10 @@ const Checklist = ({uId}) => {
         if(newColor === lastColor){
           newColor = colors[Math.floor(Math.random() * colors.length)];
         }else{
+          setLastColor(newColor);
           break
         }
       }
-      setLastColor(newColor);
       return newColor;
     };
 
@@ -169,7 +169,7 @@ const Checklist = ({uId}) => {
               <input autoComplete="off" ref={inputRef} type="taskAdd" placeholder="write a task 📝" name="todo" id="taskAdd" className="text-blue-500 w-full rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 shadow-xl text-xl" />
               <button onClick={handleList} className="bg-sky-500 hover:bg-sky-600 px-3 py-1 rounded-2xl active:translate-y-2 relative w-[100px] cursor-pointer shadow-xl">Add 👇</button>
             </div>}
-            <ol className="mt-4 w-[500px]">
+            <ol className="mt-4">
               {listItem.filter((item)=>item.task.toLowerCase() === ''  ? item : item.task.toLowerCase().includes(search.toLowerCase())).map((item,index)=>(
                 <li className={`text-sm w-full md:text-base ${item.color.bg} border-l-2 ${item.color.border} pl-2 lg:text-lg check-word flex font-semibold font-rest ${item.checked ? 'delete' : ''}`} key={index}><input onChange={(e)=>handleCheck(index,e.target.checked)} checked={item.checked} className="mr-4" type="checkbox" name="check" id="check" /> <span className=" max-w-full">{item.task}</span></li>
               ))}
