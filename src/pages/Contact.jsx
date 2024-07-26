@@ -1,10 +1,25 @@
+import { useState } from "react";
 import Navbar from "../components/Navbar";
+import { IoClose } from "react-icons/io5";
 
 const Contact = () => {
+  const [menu,setMenu] =useState(false)
+
+   const menuClose =()=>{
+    setMenu(false)
+   }
+
     return ( 
         <>
         <div className="bg-[#FAE5BA] min-h-screen">
-        < Navbar />
+        {menu && <div className="menu absolute flex flex-col gap-6 right-0 top-0 left-0 z-50 bottom-0 py-4 px-6 bg-zinc-800 text-slate-200">
+                <div className="close self-end" onClick={menuClose}><IoClose color="#f5f5f5" /></div>
+                <div className="popup-menu flex flex-col h-20 text-2xl gap-4 justify-between">
+                <div className="about font-rest py-2 px-2 border-slate-200">About us</div>
+                <div className="search font-rest py-2 px-2 border-slate-200">Search</div>
+                </div>
+            </div>}
+        < Navbar setMenu={setMenu} />
         {/* <div className="contact-bg absolute top-0 bottom-0 right-0 left-0 -z-10 bg-[#FAE5BA]"></div> */}
         <div className="modal contact-modal modal-sheet position-static d-block p-4 py-md-2" tabIndex="-1" role="dialog" id="modalTour">
         <div className="modal-dialog" role="document">

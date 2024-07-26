@@ -35,7 +35,7 @@ const Side = ({user,setdashboard,propic}) => {
             <div className="side-nav z-10 d-flex flex-column flex-shrink-0 px-2 md:px-3 py-3 fixed top-3 bottom-0 md:w-[200px] left-3 md:left-0 rounded-t-3xl md:rounded-t-none md:rounded-tr-3xl bg-gray-700" id="sidenav">
               <ul className="nav nav-pills md:pr-6 flex items-center md:items-start flex-col mb-auto">
                 <li className="my-4 border-b">
-                  <button onClick={nav} className="nav nav-link px-3 md:px-12 flex items-center text-white text-decoration-none">
+                  <button disabled='true' className="nav nav-link px-3 md:px-12 flex items-center text-white text-decoration-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi md:mr-3 bi-house" viewBox="0 0 16 16">
                       <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
                     </svg>

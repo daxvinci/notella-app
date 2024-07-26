@@ -166,8 +166,8 @@ const Checklist = ({uId}) => {
             </div>}
 
             {(listItem.length !== 0 || showInput) && <div ref={inputDivRef} className="addList md:w-[500px] lg:w-[600px] flex gap-4 justify-between">
-              <input autoComplete="off" ref={inputRef} type="taskAdd" placeholder="write a task 📝" name="todo" id="taskAdd" className="text-blue-500 w-full rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 shadow-xl text-xl" />
-              <button onClick={handleList} className="bg-sky-500 hover:bg-sky-600 px-3 py-1 rounded-2xl active:translate-y-2 relative w-[100px] cursor-pointer shadow-xl">Add 👇</button>
+              <input autoComplete="off" ref={inputRef} type="taskAdd" placeholder="write a task 📝" name="todo" id="taskAdd" className="text-blue-500 w-full rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 shadow-xl md:text-xl" />
+              <button onClick={handleList} className="bg-sky-500 hover:bg-sky-600 px-1 md:px-3 py-1 rounded-2xl active:translate-y-2 relative w-[100px] cursor-pointer shadow-xl">Add 👇</button>
             </div>}
             <ol className="mt-4">
               {listItem.filter((item)=>item.task.toLowerCase() === ''  ? item : item.task.toLowerCase().includes(search.toLowerCase())).map((item,index)=>(
