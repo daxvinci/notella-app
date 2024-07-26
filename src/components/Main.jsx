@@ -38,7 +38,7 @@ const Main = ({user,uId}) => {
         }
         const newCount = count + 1; 
         const newNotes = { id: newCount, title: title, note: note };
-        setNotes([...notes, newNotes]);
+        setNotes([newNotes,...notes]);
         writeUserData(uId, newCount, title, note);
         setCount(newCount);
         setWrite(false);
