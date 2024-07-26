@@ -83,7 +83,7 @@ const Profile = ({user,mail,propic,setPropic,uId}) => {
                     <button onClick={handleEdit} className="delete-account rounded-2xl bg-sky-500 cursor-pointer hover:bg-sky-600 px-3 py-1 active:translate-y-2 shadow-lg shadow-red-700">{ !edit ? 'Edit': 'Save'}</button>
                     </div>
                     <div className="profile-email">{mail}</div>
-                    <div onClick={handleDelete} className="delete-account md:self-end rounded-3xl bg-red-500 cursor-pointer hover:bg-red-600 mt-16 px-2 py-2 active:translate-y-2 shadow-lg shadow-red-700">Delete account</div>
+                    <div onClick={handleDelete} className="delete-account self-end rounded-3xl bg-red-500 cursor-pointer hover:bg-red-600 mt-16 px-2 py-2 active:translate-y-2 shadow-lg shadow-red-700">Delete account</div>
                 </div>
             </div>
         </div>
