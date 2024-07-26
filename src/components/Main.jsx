@@ -176,7 +176,7 @@ const Main = ({user,uId}) => {
               {notes.length !== 0 && !isLoading && <button onClick={createNewNote} className="rounded-3xl bg-blue-500 hover:bg-blue-600 w-24 font-semibold text-white px-2 py-2 md:ml-0 ml-20 mr-2 active:translate-y-2 shadow-lg shadow-blue-700 mb-4">Add New</button>}
 
                 {/* Write */}
-                {write && <div className="notesContainer h-screen flex flex-col justify-between absolute top-0 left-0 right-0 bottom-0 z-30 rounded-2xl py-10 px-10 lg:px-40 " id="notesContainer">
+                {write && <div className="notesContainer h-screen flex flex-col gap-2 justify-between fixed inset-3 z-30 rounded-2xl py-10 px-10 lg:px-40" id="notesContainer">
                     <div className="absolute top-0 left-0 right-0 bottom-10 -z-20 rounded-2xl bg-amber-100 shadow-lg"></div>
                     <form className="flex flex-col gap-5" action="">
                         <input type="text" id="title" placeholder="Title" className="text-blue-500 rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 lg:mx-40 shadow-xl h-12 text-xl" />
@@ -190,11 +190,11 @@ const Main = ({user,uId}) => {
 
                 {/* rewrite */}
                 {rewrite &&
-                    <div className="notesContainer fixed inset-3 flex flex-col justify-between z-30 rounded-2xl py-10 px-40 " id="notesContainer">
+                    <div className="notesContainer fixed inset-3 flex flex-col gap-2 justify-between z-30 rounded-2xl py-10 px-10 lg:px-40" id="notesContainer">
                     <div className="absolute top-0 left-0 right-0 bottom-0 -z-20 rounded-2xl bg-amber-100  shadow-lg"></div>
                     <form className="flex flex-col gap-5" action="">
-                        <input type="text" defaultValue={renote.title} id="newtitle" placeholder="Title" className="rounded-xl hover:ring-1 font-playful ring-blue-500 outline-0 px-3 mx-40 shadow-xl h-12 text-xl" />
-                        <textarea name="notes" defaultValue={renote.note} placeholder="Note" id="newnotes" className="rounded-xl hover:ring-1 font-rest ring-blue-500 outline-0 px-3 shadow-xl h-72 lg:h-96 text-lg resize-none bg-slate-300"></textarea>
+                        <input type="text" defaultValue={renote.title} id="newtitle" placeholder="Title" className="text-blue-500 rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 lg:mx-40 shadow-xl h-12 text-xl" />
+                        <textarea name="notes" defaultValue={renote.note} placeholder="Note" id="newnotes" className="rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 shadow-xl text-lg h-72 resize-none bg-slate-300"></textarea>
                     </form>
                     <div className="buttons self-end">
                     <button onClick={cancel} className="rounded-3xl bg-yellow-500 hover:bg-yellow-600 w-28 py-2 mr-6 mb-6 active:translate-y-2 shadow-lg shadow-yellow-500">Cancel</button>
