@@ -1,21 +1,30 @@
 import { Link, useNavigate } from "react-router-dom";
 import { auth, createUserEmailAndPassword,updateProfile2} from "../firebase";
+import { useState } from "react";
 
 const Register = () => {
     const navigate = useNavigate()
+    const [isLoading,setIsLoading] = useState(false)
+    const [isdisabled,setIsDisabled] = useState(false)
     
     const submit = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
+    setIsDisabled(true)
     const username =  e.target.username.value  //document.getElementById("username").value
     const email = e.target.email.value //document.getElementById("email").value
     const password = e.target.password.value //document.getElementById("password").value
 
     if (validate_email(email) === false || validate_password(password) === false){
       alert("wrong email or password format")
+      setIsLoading(false)
+      setIsDisabled(false)
       return false
     }
     if (validate_field(username) === false){
       alert("Username cannot be blank")
+      setIsLoading(false)
+      setIsDisabled(false)
       return false
     }
       try {
@@ -23,9 +32,13 @@ const Register = () => {
       const user = userCredential.user;
       await updateProfile2(user, { displayName: username });
       alert('Sign-up successful');
+      setIsLoading(false)
+      setIsDisabled(false)
       navigate('/Dashboard');
     } catch (err) {
       alert(err.message);
+      setIsLoading(false)
+      setIsDisabled(false)
     }
   }
 
@@ -33,6 +46,11 @@ const Register = () => {
     return ( 
         <>
         <div className="bg-[#8a8781] min-h-screen">
+        {isLoading && <div className="text-center absolute top-60 left-[50%] z-40">
+                            <div className="spinner-border" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
+                        </div>}
           <div className="modal modal-sheet position-static d-block" tabIndex="-1" role="dialog" id="modalSignin">
     <div className="modal-dialog relative" role="document">
       <div className="modal-content rounded-4 shadow">
@@ -55,7 +73,7 @@ const Register = () => {
               <input type="password" name="password" className="form-control rounded-3" id="password" placeholder="Password"></input>
               <label htmlFor="floatingPassword" className="pass">Password</label>
             </div>
-            <button type="submit" id="button" className="w-100 mb-2 btn btn-lg rounded-3 btn-primary signup text-white" >Sign up</button>
+            <button disabled={isdisabled} type="submit" id="button" className="w-100 mb-2 btn btn-lg rounded-3 btn-primary signup text-white" >Sign up</button>
             <span>Already have an account?</span> <Link to = "/Login" className="text-[#438B6A]">log in </Link>
             <hr className="my-4"></hr>
             {/* <!-- <h2 className="fs-5 fw-bold mb-3">Or use a third-party</h2>

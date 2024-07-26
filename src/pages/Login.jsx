@@ -1,20 +1,29 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { auth, signInUserEmailAndPassword } from "../firebase";
+import { useState } from "react";
 
 const Login = () => {
+  const [isLoading,setIsLoading] = useState(false)
+  const [isdisabled,setIsDisabled] = useState(false)
   const navigate = useNavigate()
   const submit = (e) => {
     e.preventDefault()
+    setIsLoading(true)
+    setIsDisabled(true)
 
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
 
     if (validate_email(email) === false || validate_password(password) === false){
       alert("wrong email or password format")
+      setIsDisabled(false)
+      setIsLoading(false)
       return false
     }if (validate_field(email) === false || validate_password(password) === false){
       alert("Username cannot be blank")
+      setIsDisabled(false)
+      setIsLoading(false)
     }else{
       signInUserEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -22,11 +31,15 @@ const Login = () => {
           console.log(user)
           // localStorage.setItem('accessToken', data._tokenResponse.idToken)
           alert('Login successfull')
+          setIsDisabled(false)
+          setIsLoading(false)
           navigate('/Dashboard')
           // window.location.href = "./dashboard.html"
       })
       .catch((err) => {
           alert(err.message)
+          setIsDisabled(false)
+          setIsLoading(false)
       })
     }
 
@@ -34,6 +47,12 @@ const Login = () => {
     return ( 
         <>
       <div className="bg-[#8a8781] min-h-screen">
+      {isLoading && <div className="text-center absolute top-60 left-[50%] z-40">
+                            <div className="spinner-border" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
+                        </div>}
+
           <div className="modal modal-sheet position-static d-block p-4 py-md-5" tabIndex="-1" role="dialog" id="modalSignin">
         <div className="modal-dialog" role="document">
         <div className="modal-content rounded-4 shadow">
@@ -53,7 +72,7 @@ const Login = () => {
               <input type="password" className="form-control rounded-3" id="password" placeholder="Password"></input>
               <label htmlFor="floatingPassword" className="pass">Password</label>
             </div>
-            <button id="button" className="w-100 mb-2 btn btn-lg rounded-3 btn-primary signup text-white" onClick={(event)=>submit(event)}>log in</button>
+            <button disabled={isdisabled} id="button" className="w-100 mb-2 btn btn-lg rounded-3 btn-primary signup text-white" onClick={(event)=>submit(event)}>log in</button>
             <span>Dont have an account?</span> <Link to="/Register" className="text-[#438B6A]">Register</Link>
             <hr className="my-4"></hr>
             {/* <!-- <h2 className="fs-5 fw-bold mb-3">Or use a third-party</h2>
