@@ -219,7 +219,7 @@ const Main = ({user,uId}) => {
                 ))}
                 {deleteBox && 
                 <div className="fixed top-0 bottom-0 left-0 right-0 z-40">
-                <div className="rounded-2xl absolute top-64 bottom-64 right-96 left-96 bg-slate-800 flex flex-col py-16 px-6 justify-between items-center">
+                <div className="rounded-2xl absolute top-44 bottom-44 left-10 right-10 md:top-52 md:bottom-52 md:left-20 md:right-20 lg:top-64 lg:bottom-64 lg:right-96 lg:left-96 bg-slate-800 flex flex-col gap-3 py-10 lg:py-16 px-6 justify-between items-center">
                     <h1 className="text-white text-xl font-bold">Are you sure? Doing so will erase this from existense.</h1>
                     <div className="decision flex gap-4">
                     <button onClick={()=>setDeleteBox(false)} className="rounded-3xl bg-blue-500 hover:bg-blue-600 w-20 py-2 mr-2 active:translate-y-2 shadow-lg shadow-blue-700">cancel</button>
