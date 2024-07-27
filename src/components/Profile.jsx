@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { storage,refStorage,uploadBytes2,getDownloadURL2,deleteUser2,auth } from "../firebase";
+import { storage,refStorage,uploadBytes2,getDownloadURL2,updateProfile2,deleteUser2,auth, onAuthStateChanged2 } from "../firebase";
 
 
 
-const Profile = ({user,mail,propic,setPropic,uId}) => {
+const Profile = ({user,setUser,mail,propic,setPropic,uId}) => {
     const [edit,setEdit] = useState(false)
     const navigate = useNavigate()
-
+    const [username, setUsername] = useState(user);
    
-
+    
 
     const storageRef = refStorage(storage, 'profile/' + uId)
 
@@ -31,9 +31,20 @@ const Profile = ({user,mail,propic,setPropic,uId}) => {
         }
     }
 
-    const handleEdit =()=>{
+    const handleEdit = async()=>{
         setEdit(!edit);
-        edit && console.log('saved')
+        const newUser = auth.currentUser
+        if(newUser){
+          await updateProfile2(newUser, { displayName: username })
+          setUsername(newUser.displayName)
+          setUser(newUser.displayName)
+        }else{
+          onAuthStateChanged2(auth,(newUser)=>{
+          updateProfile2(newUser, { displayName: username })
+          setUsername(newUser.displayName)
+          setUser(newUser.displayName)  
+          })
+        }
     }
 
     const handleDelete =()=>{
@@ -79,8 +90,8 @@ const Profile = ({user,mail,propic,setPropic,uId}) => {
                 </div>
                 <div className="right-pro flex flex-col">
                     <div className="edit-user flex items-center mb-3 gap-4">
-                    <div className="profile-username"><input readOnly={!edit} className={ !edit ? "username text-blue-500 outline-none rounded-lg bg-transparent":"text-blue-500 rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 shadow-md h-8"} defaultValue={user} type="text" name="username" id="username" /></div>
-                    <button onClick={handleEdit} className="delete-account rounded-2xl bg-sky-500 cursor-pointer hover:bg-sky-600 px-3 py-1 active:translate-y-2 shadow-lg shadow-red-700">{ !edit ? 'Edit': 'Save'}</button>
+                    <div className="profile-username"><input onChange={(e) => setUsername(e.target.value)} readOnly={!edit} className={ !edit ? "username text-blue-500 outline-none rounded-lg bg-transparent":"text-blue-500 rounded-xl hover:ring-1 ring-blue-500 outline-0 px-3 shadow-md h-8"} defaultValue={user} type="text" name="username" id="username" /></div>
+                    <button onClick={()=>handleEdit()} className="delete-account rounded-2xl bg-sky-500 cursor-pointer hover:bg-sky-600 px-3 py-1 active:translate-y-2 shadow-lg shadow-red-700">{ !edit ? 'Edit': 'Save'}</button>
                     </div>
                     <div className="profile-email">{mail}</div>
                     <div onClick={handleDelete} className="delete-account self-end rounded-3xl bg-red-500 cursor-pointer hover:bg-red-600 mt-16 px-2 py-2 active:translate-y-2 shadow-lg shadow-red-700">Delete account</div>

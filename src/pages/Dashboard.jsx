@@ -55,7 +55,7 @@ const Dashboard = () => {
         <div className="md:px-4 md:py-4 h-full">
             < Side propic = {propic} user={username} setdashboard = {setdashboard} />
             {dashboard === 'home' && < Main user ={username} uId = {uId} />}
-            {dashboard === 'profile' && < Profile uId = {uId} setPropic = {setPropic} propic={propic} user ={username} mail={email} />}
+            {dashboard === 'profile' && < Profile uId = {uId} setPropic = {setPropic} propic={propic} setUser={setUsername} user ={username} mail={email} />}
             {dashboard === 'checklist' && < Checklist uId={uId} />}
         </div>
     </div>

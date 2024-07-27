@@ -30,8 +30,8 @@ const LandingPage = () => {
             <img src="./assets/notes (1).png" className="d-block mx-lg-auto " alt="Note pad" width="400" height="400" loading="lazy"></img>
           </div>
           <div className="lg:w-[50%]">
-            <h1 className="text-3xl text-center md:text-start md:text-4xl fw-bold  lh-1 mb-3 text">Take Notes and Access them Whenever and wherever</h1>
-            <p className="lead text text-base text-center md:text-start font-semibold">Keep records of your Ideas, Reminders and Tasks across all devices and anywhere. </p>
+            <h1 className="text-3xl sm:text-center   md:text-start md:text-4xl fw-bold  lh-1 mb-3 text">Take Notes and Access them Whenever and wherever</h1>
+            <p className="lead text text-base sm:text-center   md:text-start font-semibold">Keep records of your Ideas, Reminders and Tasks across all devices and anywhere. </p>
             <div className="mt-6 md:block flex justify-center">
               <Link to="/Login" className="log"><button type="button" className="btn btn-lg px-4 me-md-2 btn-color">Noted</button></Link> 
             </div>
