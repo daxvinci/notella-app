@@ -66,8 +66,8 @@ const Side = ({user,setdashboard,propic}) => {
 
                 {/* profile */}
                 <div className="dropdown border-t pt-3">
-                  <a href="/dropdown" className="d-flex gap-3 w-full h-[40px] align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <div className="img-cover rounded-full overflow-hidden h-[40px] w-[40px] "><img src={propic} alt="profile pic" className="object-cover h-full w-full"></img></div>
+                  <a href="/dropdown" className="d-flex gap-1 w-full h-[40px] align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div className="img-cover rounded-full overflow-hidden h-[30px] md:h-[40px] w-[30px] md:w-[40px] mr-1 md:mr-3 "><img src={propic} alt="profile pic" className="object-cover h-full w-full"></img></div>
                     <strong className="nav-item hidden md:block">{user}</strong>
                   </a>
                   <ul className="dropdown-menu dropdown-menu-dark z-50 text-small shadow">
